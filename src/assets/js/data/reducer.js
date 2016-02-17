@@ -8,6 +8,7 @@ function location(state={
   }, action) {
     switch (action.type) {
         case 'CHANGE_LOCATION':
+        console.log("action.location");
         console.log(action.location);
             return action.location;
         default:
@@ -18,6 +19,7 @@ function location(state={
 function places(state={},action){
   switch (action.type) {
     case 'SET_PLACE_RESULT':
+    console.log('action.placeResult')
     console.log(action.placeResult)
       return action.placeResult;
     default:
