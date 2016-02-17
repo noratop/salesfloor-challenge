@@ -1,27 +1,36 @@
 import { createStore, combineReducers, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 
-//map component reducer
-function location(state={
-    center: {lat: 45.5017, lng: -73.5673},
-    zoom: 4
-  }, action) {
-    switch (action.type) {
-        case 'CHANGE_LOCATION':
-        console.log("action.location");
-        console.log(action.location);
-            return action.location;
-        default:
-            return state;
-    }
+//map reducer
+function map(state={},action){
+  switch (action.type) {
+    case 'INIT_MAP':
+      const map = new google.maps.Map(action.ref, {
+        center: {lat: 45.5017, lng: -73.5673},
+        zoom: 4,
+        // mapTypeControl: false,
+        // panControl: false,
+        // zoomControl: false,
+        streetViewControl: false
+      });
+      return map;
+      break;
+    default:
+      return state;
+  }
 }
 
+//restaurant reducer
 function places(state={},action){
   switch (action.type) {
     case 'SET_PLACE_RESULT':
-    console.log('action.placeResult')
-    console.log(action.placeResult)
-      return action.placeResult;
+    console.log('SET_PLACE_RESULT');
+    console.log(action.origin);
+    console.log(action.results);
+      return {
+        origin: action.origin,
+        results: action.results
+      };
     default:
       return state;
   }
@@ -30,7 +39,7 @@ function places(state={},action){
 
 //combine all reducers
 const app = combineReducers({
-    location,
+    map,
     places
 });
 

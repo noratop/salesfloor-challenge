@@ -1,26 +1,31 @@
-export function initMap(ref,area){
-
-
+export function initMap(ref){
   return {
     type: 'INIT_MAP',
-    map
-  };
-}
-
-export function changeArea(area){
-  return {
-    type:'CHANGE_AREA',
-    area
+    ref
   }
 }
 
-export function changeMapBounds(geometry){
+export function fetchRestaurant(geolocation){
   return function (dispatch, getState) {
-    const newMap = {...getState().map, getplace}
+    const map = getState().map;
+    const search = {
+      // bounds: map.getBounds(),
+      location: new google.maps.LatLng(geolocation),
+      // radius: 1000,
+      types: ['restaurant'],
+      rankBy: google.maps.places.RankBy.DISTANCE
+    };
 
-    dispatch({
-      type:'CHANGE_BOUNDS',
-      newMap
-    });
+    const placeService = new google.maps.places.PlacesService(map);
+    placeService.nearbySearch(search,(results, status)=>{
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+        console.log('Restaurants');
+        dispatch({
+          type:'SET_PLACE_RESULT',
+          origin:geolocation,
+          results
+        });
+      }
+    })
   }
 }

@@ -1,74 +1,46 @@
 import React from 'react';
+import {initMap} from '../data/actionsCreators';
 
 var Map = React.createClass({
   componentDidMount() {
     const {store} = this.props;
-    const {location,places} = store.getState();
-
+    store.dispatch(initMap(this.mapRef));
     this.unsubscribe = store.subscribe(this.updateMap);
-
-    this.map = new google.maps.Map(this.mapRef, {
-      ...location,
-      // mapTypeControl: false,
-      // panControl: false,
-      // zoomControl: false,
-      streetViewControl: false
-    });
+  },
+  componentWillUnmount() {
+    this.unsubscribe();
   },
   updateMap(){
     console.log('update map');
 
-    let {map} = this;
     const {store} = this.props;
-    const {location,places} = store.getState();
+    const {map,places} = store.getState();
 
-    //zoom the map on the new location
-    map.panTo(location.center);
-    map.setZoom(15);
-
-    const placeService = new google.maps.places.PlacesService(map);
-    const search = {
-      bounds: map.getBounds(),
-      types: ['restaurant']
-    };
-
-    placeService.nearbySearch(search,(results, status)=>{
-      if (status === google.maps.places.PlacesServiceStatus.OK) {
-        console.log('Restaurants');
-        console.log(results);
-      }
+    //zoom the map on the new location and add a marker
+    map.panTo(places.origin);
+    map.setZoom(16);
+    const marker = new google.maps.Marker({
+        position: map.getCenter(),
+        icon: {
+          path: google.maps.SymbolPath.CIRCLE,
+          scale: 5
+        },
+        map: map
     });
+
+    places.results.some((restaurant,index)=>{
+      const markerLetter = String.fromCharCode('A'.charCodeAt(0) + index);
+      new google.maps.Marker({
+        position: restaurant.geometry.location,
+        animation: google.maps.Animation.DROP,
+        label: markerLetter,
+        map: map
+      });
+
+      // return index===10-1;
+    })
+
   },
-  // loadMap(ref){
-  //   console.log("load map");
-  //   this.mapRef = ref;
-  //   const {store} = this.props;
-  //   //subscribe the ref callback to reload the map on new state
-  //   this.unsubscribe = store.subscribe(() => {
-  //     this.loadMap(ref);
-  //   });
-  //
-  //   //init the googlemap with the props area
-  //   const {location,places} = store.getState();
-  //
-  //
-  //   //
-  //   if (places.geometry) {
-  //     const placeService = new google.maps.places.PlacesService(map);
-  //     const search = {
-  //       location: places.geometry.location,
-  //       radius: 5000,
-  //       types: ['restaurant']
-  //     };
-  //
-  //     placeService.nearbySearch(search,(results, status)=>{
-  //       if (status === google.maps.places.PlacesServiceStatus.OK) {
-  //         console.log('Restaurants');
-  //         console.log(results);
-  //       }
-  //     });
-  //   }
-  // },
   render() {
     console.log('render');
     return (
