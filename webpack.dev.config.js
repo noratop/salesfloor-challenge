@@ -22,7 +22,7 @@ module.exports = {
   module: {
     preLoaders: [
       {
-        test: /src\/.*\.jsx?$/,
+        test: /src\/.*\.js?$/,
         loader: 'babel',
         query: {
           cacheDirectory: true,
