@@ -1,5 +1,6 @@
 @import 'foundation_settings';
 @import 'foundation';
+@include foundation-flex-grid;
 
 html {
   box-sizing: border-box;
@@ -9,4 +10,14 @@ html {
   box-sizing: inherit;
 }
 
-@import 'github-user';
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.main-container {
+  height: 100vh;
+  max-width: none;
+}
+
+@import 'map';
