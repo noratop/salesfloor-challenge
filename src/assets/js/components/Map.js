@@ -1,6 +1,5 @@
 import React from 'react';
 import {initMap} from '../data/actionsCreators';
-require('../lib/map-icons.min.js');
 
 const Map = React.createClass({
   getInitialState() {

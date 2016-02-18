@@ -4,6 +4,11 @@ import request from 'superagent';
 import {fetchRestaurant,setSelectedItem} from '../data/actionsCreators';
 
 const Search = React.createClass({
+  getInitialState() {
+    return {
+      displayResult: false
+    };
+  },
   componentDidMount() {
     const {store} = this.props;
     this.unsubscribe = store.subscribe(()=>this.forceUpdate());
@@ -82,6 +87,9 @@ const Search = React.createClass({
       store.dispatch(fetchRestaurant(location,this.refs.radius.value));
     }
   },
+  toggleResult(){
+      this.setState({displayResult:!this.state.displayResult});
+  },
   render() {
     const {store} = this.props;
     const {index} = store.getState().item;
@@ -90,32 +98,37 @@ const Search = React.createClass({
     return (
       <div className={this.props.className}>
         <input
-          className='searchInput'
+          className='searchBar'
           placeholder='Enter a location'
           ref={(ref)=>this.inputRef=ref}
         />
-      <div className='searchType'>
-        <div className='searchType__text'>Search by:</div>
-        <div className='searchType__10'><a href='#' onClick={this.nearest10}>Nearest 10</a></div>
-          <input
-            className='searchType__radius'
-            placeholder='Search within a radius (m)'
-            ref='radius'
-            onKeyUp={this.searchByRadius}
-          />
+        <div className='showResult'>
+            <a href='#' onClick={this.toggleResult}>{!this.state.displayResult? 'Show results':'Hide results'}</a>
         </div>
-        <ul className='restaurant__list'>
-          {
-            restaurantList.map((item,i)=>{
-              return <RestaurantItem
-                  onClick={this.handleClick.bind(this,item,i)}
-                  key={i}
-                  details={item}
-                  selected={index===i}
-                />
-            })
-          }
-        </ul>
+        <div className={`searchResult ${this.state.displayResult? 'display':''}`}>
+          <div className='searchOptions'>
+            <div className='searchOptions__text'>Search by:</div>
+            <div className='searchOptions__10'><a href='#' onClick={this.nearest10}>Nearest 10</a></div>
+            <input
+              className='searchOptions__radius'
+              placeholder='Search within a radius (m)'
+              ref='radius'
+              onKeyUp={this.searchByRadius}
+            />
+          </div>
+          <ul className='restaurant__list'>
+            {
+              restaurantList.map((item,i)=>{
+                return <RestaurantItem
+                    onClick={this.handleClick.bind(this,item,i)}
+                    key={i}
+                    details={item}
+                    selected={index===i}
+                  />
+              })
+            }
+          </ul>
+        </div>
       </div>
     )
   }
