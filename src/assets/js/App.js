@@ -10,7 +10,7 @@ const App = React.createClass({
     return (
       <div>
         <div className='row collapse align-stretch main-container'>
-          <Search {...this.props} className='columns small-12 medium-4'/>
+          <Search {...this.props} className='columns small-12 medium-4 searchBar'/>
           <Map {...this.props} className='columns small-12 medium-8 mapComponent'/>
         </div>
       </div>

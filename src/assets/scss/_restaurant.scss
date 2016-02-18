@@ -1,19 +1,48 @@
 .restaurant {
+  $backColor:tomato;
 
   &__list {
     margin:0;
-    padding: 10px;
+    padding: 0;
     list-style: none;
+    background-color: white;
   }
 
   &__item {
-    display: block;
-    margin: 5px 0;
-    padding: 5px;
-    box-shadow: 0 0 1px black;
+    font-size: 0.8em;
+    display: flex;
+    flex-flow: row nowrap;
+    align-content: stretch;
+    align-items: stretch;
+    justify-content: space-between;
+    margin: 2px 0;
+    padding: 5px 0;
+    box-shadow: 0 0 3px #c4c4c4;
+    background-color: white;
 
-    p {
-      margin: 0;
+    &:hover {
+      background-color: #d6d6d6;
+    }
+
+    &--selected{
+      color:white;
+      background-color: $backColor;
+
+      &:hover {
+        background-color: $backColor;
+      }
+    }
+
+    &__details {
+      padding: 0 5px;
+    }
+
+    &__letter {
+      padding: 0 7px;
+      display: flex;
+      align-items: center;
+      background-color: $backColor;
+      color:white;
     }
   }
 }

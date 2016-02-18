@@ -21,15 +21,27 @@ function map(state={},action){
 }
 
 //restaurant reducer
-function places(state={},action){
+function places(state={counter:0},action){
   switch (action.type) {
     case 'SET_PLACE_RESULT':
     console.log('SET_PLACE_RESULT');
-    console.log(action.origin);
-    console.log(action.results);
       return {
         origin: action.origin,
-        results: action.results
+        results: action.results,
+        counter: ++state.counter,
+        radius: action.radius
+      };
+    default:
+      return state;
+  }
+}
+
+function item(state={},action){
+  switch (action.type) {
+    case 'SET_SELECT_ITEM':
+      return {
+        selectedItem:action.selectedItem,
+        index:action.index
       };
     default:
       return state;
@@ -40,7 +52,8 @@ function places(state={},action){
 //combine all reducers
 const app = combineReducers({
     map,
-    places
+    places,
+    item
 });
 
 export let store = createStore(app,applyMiddleware(thunk));

@@ -15,12 +15,17 @@ const RestaurantItem = React.createClass({
   //   }
   // },
   render () {
-    const {details} = this.props;
+    const {details,selected} = this.props;
+    // console.log(`render ${details.name}`);
 
     return (
-      <li className='restaurant__item'>
-        <div className=''>
-          <p>{details.name}</p>
+      <li className={`restaurant__item ${selected? 'restaurant__item--selected':''}`} onClick={this.props.onClick}>
+        <div className='restaurant__item__details'>
+          <h3>{details.name}</h3>
+          <p>{details.vicinity}</p>
+        </div>
+        <div className='restaurant__item__letter'>
+          <p>{details.markerLetter}</p>
         </div>
       </li>
     )
