@@ -39,7 +39,7 @@ const SearchResult = React.createClass({
   render () {
     const {store} = this.props;
     const {selectedItemIndex} = store.getState().places;
-    const restaurantList = this.getRestaurantList() || [];
+    const restaurantList = this.getRestaurantList() || []; //getRestaurantList is supposed to handle client side sorting, feature not yet included
 
     return (
       <div className={`searchResult ${this.props.displayResult? 'display':''}`}>

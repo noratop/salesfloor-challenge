@@ -83,17 +83,11 @@ export function setSelectedItem(item,i){
     markers[i].setOpacity(1);
     markers[i].setAnimation(google.maps.Animation.BOUNCE);
     setTimeout(()=>{markers[i].setAnimation(null); }, 150);
-    // this.setState({selectedItemIndex});
 
     dispatch({
       type:'SET_SELECT_ITEM',
       selectedItem:item,
       index:i
     });
-  }
-}
-export function resetSelectedItem(){
-  return {
-    type:'RESET_SELECT_ITEM'
   }
 }

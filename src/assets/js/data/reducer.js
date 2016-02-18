@@ -25,7 +25,6 @@ function places(state={counter:0},action){
       return {
         origin: action.origin,
         results: action.results,
-        counter: ++state.counter,
         radius: action.radius,
         markers: action.markers
       };

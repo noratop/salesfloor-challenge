@@ -38,9 +38,8 @@ const SearchBar = React.createClass({
   },
   handlePlacesChanged () {
     const {store} = this.props;
-    const placeResult = this.autocomplete? this.autocomplete.getPlace():{};
+    const placeResult = this.autocomplete.getPlace() || {};
     store.dispatch(fetchRestaurant(placeResult.geometry.location));
-    // store.dispatch(resetSelectedItem());
   },
   render () {
     return (
