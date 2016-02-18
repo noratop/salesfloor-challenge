@@ -1,5 +1,7 @@
 # Salesfloor technical test
 
+## live demo [here](http://noratop.github.io/salesfloor-challenge/)
+
 ## Install
 1. git clone
 2. npm install
