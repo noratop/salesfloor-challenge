@@ -1,16 +1,13 @@
 import { createStore, combineReducers, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 
-//map reducer
+//map reducer, required to access the map Object in the store when dispatching from the SearchBar component
 function map(state={},action){
   switch (action.type) {
     case 'INIT_MAP':
       const map = new google.maps.Map(action.ref, {
         center: {lat: 45.5017, lng: -73.5673},
         zoom: 4,
-        // mapTypeControl: false,
-        // panControl: false,
-        // zoomControl: false,
         streetViewControl: false
       });
       return map;
@@ -29,31 +26,24 @@ function places(state={counter:0},action){
         origin: action.origin,
         results: action.results,
         counter: ++state.counter,
-        radius: action.radius
+        radius: action.radius,
       };
-    default:
-      return state;
-  }
-}
-
-function item(state={},action){
-  switch (action.type) {
     case 'SET_SELECT_ITEM':
+    console.log('SET_SELECT_ITEM');
       return {
+        ...state,
         selectedItem:action.selectedItem,
-        index:action.index
+        selectedItemIndex:action.index
       };
     default:
       return state;
   }
 }
 
-
-//combine all reducers
+//combine reducers
 const app = combineReducers({
     map,
-    places,
-    item
+    places
 });
 
 export let store = createStore(app,applyMiddleware(thunk));

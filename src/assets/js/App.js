@@ -3,7 +3,6 @@ import ReactDOM  from 'react-dom';
 import Search from './components/Search';
 import Map from './components/Map';
 import {store} from './data/reducer';
-import request from 'superagent';
 
 const App = React.createClass({
   render() {

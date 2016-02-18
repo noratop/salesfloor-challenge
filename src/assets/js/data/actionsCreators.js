@@ -5,6 +5,7 @@ export function initMap(ref){
   }
 }
 
+//geolocation as a google LatLng object
 export function fetchRestaurant(geolocation,radius){
   return function (dispatch, getState) {
     const map = getState().map;
@@ -44,5 +45,11 @@ export function setSelectedItem(item,i){
     type:'SET_SELECT_ITEM',
     selectedItem:item,
     index:i
+  }
+}
+
+export function resetSelectedItem(){
+  return {
+    type:'RESET_SELECT_ITEM'
   }
 }

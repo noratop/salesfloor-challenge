@@ -1,0 +1,9 @@
+.search {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+
+  @include breakpoint(medium) {
+    height: 100vh;
+  }
+}
