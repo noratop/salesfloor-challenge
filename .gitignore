@@ -1,6 +1,7 @@
 node_modules/
 .DS_Store
 .sass-cache
+.grunt
 main.css*
 map.css*
 /src/assets/js/*app-bundle*

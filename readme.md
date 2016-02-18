@@ -1,5 +1,10 @@
 # Salesfloor technical test
 
+## Install
+1. git clone
+2. npm install
+3. grunt dev (for local preview at http://localhost:42000/)
+
 ## Technologies
 * React
 * Redux

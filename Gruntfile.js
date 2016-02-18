@@ -106,7 +106,7 @@ module.exports = function(grunt) {
         src: [
           '**',
           '!assets/.sass-cache/',
-          '!assets/css/**',
+          '!assets/css/ma**',
           '!assets/scss/**',
           '!assets/js/**'
         ],
