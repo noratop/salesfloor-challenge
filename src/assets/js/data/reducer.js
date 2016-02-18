@@ -27,6 +27,7 @@ function places(state={counter:0},action){
         results: action.results,
         counter: ++state.counter,
         radius: action.radius,
+        markers: action.markers
       };
     case 'SET_SELECT_ITEM':
     console.log('SET_SELECT_ITEM');
