@@ -1,5 +1,5 @@
 import React from 'react';
-import {initMap} from '../data/actionsCreators';
+import {initMap} from '../redux/actionsCreators';
 
 const Map = React.createClass({
   componentDidMount() {

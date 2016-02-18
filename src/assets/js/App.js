@@ -2,7 +2,7 @@ import React  from 'react';
 import ReactDOM  from 'react-dom';
 import Search from './components/Search';
 import Map from './components/Map';
-import {store} from './data/reducer';
+import {store} from './redux/reducer';
 
 const App = React.createClass({
   render() {

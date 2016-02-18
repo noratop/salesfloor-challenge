@@ -1,6 +1,6 @@
 import React from 'react'
 import RestaurantItem from './RestaurantItem';
-import {fetchRestaurant,setSelectedItem} from '../data/actionsCreators';
+import {fetchRestaurant,setSelectedItem} from '../redux/actionsCreators';
 
 const SearchResult = React.createClass({
   componentDidMount() {

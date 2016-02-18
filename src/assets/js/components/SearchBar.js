@@ -1,5 +1,5 @@
 import React from 'react';
-import {fetchRestaurant,resetSelectedItem} from '../data/actionsCreators';
+import {fetchRestaurant,resetSelectedItem} from '../redux/actionsCreators';
 import request from 'superagent';
 
 
