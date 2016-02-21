@@ -33,9 +33,6 @@ const SearchResult = React.createClass({
       store.dispatch(fetchRestaurant(origin,this.refs.radius.value));
     }
   },
-  toggleResult(){
-      this.setState({displayResult:!this.state.displayResult});
-  },
   render () {
     const {store} = this.props;
     const {selectedItemIndex} = store.getState().places;

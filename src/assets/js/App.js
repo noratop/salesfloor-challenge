@@ -3,6 +3,8 @@ import ReactDOM  from 'react-dom';
 import Search from './components/Search';
 import Map from './components/Map';
 import {store} from './redux/reducer';
+import injectTapEventPlugin from "react-tap-event-plugin";
+injectTapEventPlugin();
 
 const App = React.createClass({
   render() {

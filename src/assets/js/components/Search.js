@@ -8,12 +8,15 @@ const Search = React.createClass({
       displayResult: false
     };
   },
+  toggleResult(){
+      this.setState({displayResult:!this.state.displayResult});
+  },
   render() {
     return (
       <div className={this.props.className}>
         <SearchBar {...this.props}/>
         <div className='showResult'>
-            <a href='#' onClick={this.toggleResult}>{!this.state.displayResult? 'Show results':'Hide results'}</a>
+            <a href='#' onTouchTap={this.toggleResult}>{!this.state.displayResult? 'Show results':'Hide results'}</a>
         </div>
         <SearchResult {...this.props} displayResult={this.state.displayResult}/>
       </div>
